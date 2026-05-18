@@ -17,4 +17,4 @@ RUN mkdir -p /data/.openclaw /data/workspace
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "openclaw gateway --host 0.0.0.0 --port ${PORT:-8080}"]
+CMD ["sh", "-c", "openclaw gateway run --bind lan --port ${PORT:-8080} --auth token --token ${OPENCLAW_GATEWAY_TOKEN} --allow-unconfigured"]
