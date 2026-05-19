@@ -9,12 +9,15 @@ RUN apt-get update && apt-get install -y \
 
 RUN npm install -g openclaw@latest
 
-ENV OPENCLAW_STATE_DIR=/data/.openclaw
+ENV OPENCLAW_STATE_DIR=/data
 ENV OPENCLAW_WORKSPACE_DIR=/data/workspace
 ENV NODE_ENV=production
 
-RUN mkdir -p /data/.openclaw /data/workspace
+RUN mkdir -p /data /data/workspace
+
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "openclaw gateway run --bind lan --port ${PORT:-8080} --auth token --token ${OPENCLAW_GATEWAY_TOKEN} --allow-unconfigured"]
+CMD ["/start.sh"]
