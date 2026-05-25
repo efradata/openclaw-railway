@@ -17,6 +17,12 @@ if [ -n "$RAILWAY_PUBLIC_DOMAIN" ]; then
     "[\"${ORIGIN}\"]"
 fi
 
+if [ "${CLEAN_OPENCLAW_CODEX_PLUGIN:-false}" = "true" ]; then
+  echo "Cleaning stale @openclaw/codex plugin from /data..."
+  rm -rf /data/npm/node_modules/@openclaw/codex
+  rm -f /data/npm/package-lock.json
+fi
+
 exec openclaw gateway run \
   --bind lan \
   --port "${PORT:-8080}" \
