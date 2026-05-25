@@ -16,7 +16,7 @@ Add a Railway volume mounted at:
 
 ```bash
 /data
-````
+```
 
 This is required so OpenClaw keeps its configuration, workspace, sessions, and paired devices after redeploys.
 
