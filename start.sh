@@ -3,6 +3,11 @@ set -e
 
 mkdir -p /data /data/workspace
 
+if [ -z "${OPENCLAW_GATEWAY_TOKEN:-}" ]; then
+  echo "ERROR: OPENCLAW_GATEWAY_TOKEN is not set." >&2
+  exit 1
+fi
+
 if [ -n "$RAILWAY_PUBLIC_DOMAIN" ]; then
   ORIGIN="https://${RAILWAY_PUBLIC_DOMAIN}"
   echo "Setting OpenClaw allowed origin: ${ORIGIN}"
