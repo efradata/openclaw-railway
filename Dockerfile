@@ -1,13 +1,21 @@
 FROM node:22-slim
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
     ca-certificates \
     bash \
+    procps \
+    python3 \
+    python3-pip \
+    jq \
+    less \
     && rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g openclaw@latest
+
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
+    ln -s /root/.local/bin/uv /usr/local/bin/uv
 
 ENV OPENCLAW_STATE_DIR=/data
 ENV OPENCLAW_WORKSPACE_DIR=/data/workspace
