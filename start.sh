@@ -4,12 +4,7 @@ set -e
 mkdir -p /data /data/workspace
 
 if [ -z "${OPENCLAW_GATEWAY_TOKEN:-}" ]; then
-  echo "ERROR: OPENCLAW_GATEWAY_TOKEN is not set. Define a fixed secure token in Railway variables." >&2
-  exit 1
-fi
-
-if [ "${OPENCLAW_GATEWAY_TOKEN}" = '${{secret()}}' ]; then
-  echo "ERROR: OPENCLAW_GATEWAY_TOKEN must be a fixed value, not the literal \${{secret()}} placeholder." >&2
+  echo "ERROR: OPENCLAW_GATEWAY_TOKEN is not set." >&2
   exit 1
 fi
 
